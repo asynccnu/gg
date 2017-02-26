@@ -1,0 +1,5 @@
+**/*.pyc
+container.env
+venv/
+**/*__pycache__/
+shadowsocks.json
