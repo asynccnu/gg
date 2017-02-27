@@ -16,3 +16,6 @@ def start_spiders():
     global ip_all
     _start_spiders(ip_all)
     _check_ips(ip_all, ip_use)
+    db.delete('ips')
+    for ip in ip_use:
+        db.sadd('ips', ip)

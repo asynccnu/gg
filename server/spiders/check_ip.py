@@ -9,7 +9,7 @@ async def _check_ip(ip):
         try:
             resp = await session.get('http://www.baidu.com', proxy=_ip, timeout=3)
             await resp.text() # release
-            return _ip
+            return ip
         except Exception: # 😂
             return None
 
@@ -17,4 +17,3 @@ async def check_ip(ip, ip_use):
     _ip = await _check_ip(ip)
     if _ip:
         ip_use.append(_ip)
-        print('check: %s' % _ip)
