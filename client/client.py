@@ -19,6 +19,7 @@ async def handle(request):
     ips = await redis_conn()
     while True:
         ip = eval(random.choice(ips)).get('ip')
+        # ip = None
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get('http://muxistudio.com', proxy=ip, timeout=3) as resp:
