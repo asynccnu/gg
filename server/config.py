@@ -3,6 +3,7 @@ from datetime import timedelta
 # ================== Server Config ==================
 # celery config
 task_serializer = 'json'
+CELERYD_CONCURRENCY=1
 
 # celery beats config
 beat_schedule = {
@@ -13,9 +14,4 @@ beat_schedule = {
     }, 
 }
 
-# ip spider config
-ip_use = 50
-
-# ================== Client Config ==================
-# redis config
-
+# ===================================================

@@ -12,11 +12,12 @@ async def cn_proxy_spider(ip_all, ip_num, proxy=None):
         async with session.get(cn_proxy_url) as resp:
             content = await resp.text()
             soup = BeautifulSoup(content, 'lxml')
-            tbody = soup.find('tbody')
-            for _ in tbody.find_all('tr')[:ip_num]:
-                td = _.find_all('td')
-                ip_all.append({
-                    'ip'  : td[0].string+':'+td[1].string,
-                    'addr': td[2].string.split(" ")[0],
-                    'time': td[-1].string
-                })
+            tbodys = soup.find_all('tbody')
+            for tbody in tbodys:
+                for _ in tbody.find_all('tr'):
+                    td = _.find_all('td')
+                    ip_all.append({
+                        'ip'  : 'http://' + td[0].string+':'+td[1].string,
+                        'addr': td[2].string.split(" ")[0],
+                        'time': td[-1].string
+                    })
